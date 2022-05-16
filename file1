@@ -1,0 +1,35 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main(){ 
+    int arr[]={1,2,3,4};
+    
+    int n=sizeof(arr)/sizeof(arr[0]);
+  int m[n][n];
+ //n=4 then cost matrix will be 3*3
+  for(int i=1;i<n;i++)m[i][i]=0;
+  
+  for(int l=n-2;l>0;l--){
+  
+  for(int i=1;i<=l;i++){
+      int j=n-l+i-1;
+     m[i][j]=INT_MAX;
+    
+  for(int k=i;k<j;k++){
+        int q = m[i][k]+m[k+1][j]+arr[i-1]*arr[k]*arr[j];
+        if(q<m[i][j])m[i][j]=q;
+ }
+}
+  }
+
+ for(int i=1;i<n;i++){
+    for(int j=1;j<n;j++){
+        cout<<m[i][j]<<" ";
+    }
+    cout<<endl;
+    }
+    
+ cout<<"\ncost of mcm = "<<m[1][n-1]<<endl;   
+    
+    return 0;
+}
